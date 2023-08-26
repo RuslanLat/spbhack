@@ -20,7 +20,7 @@ def data_upload_predict():
     
     df = pd.read_csv('row_data/building_20230808.csv').set_index('id').drop_duplicates()
 
-    return df
+    return df[:500]
 
 def fuzz_partial_ratio(full_address_lower, input_text):
     return fuzz.partial_ratio(full_address_lower, input_text)
