@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+/pgdata/
+/venv/*
+/data/*
+/raw_data/*
+__pycache__/
+*.py[cod]

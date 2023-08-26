@@ -1,0 +1,8 @@
+streamlit
+streamlit-aggrid
+psycopg2-binary
+fastapi[all]
+python-dotenv
+openpyxl
+fuzzywuzzy
+transformers
