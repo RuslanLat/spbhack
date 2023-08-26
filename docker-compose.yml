@@ -33,7 +33,7 @@ services:
         - .:/var/lib/postgresql/data/
       environment:
         - POSTGRES_USER=spbhack
-        - POSTGRES_PASSWORD=pspbhack
+        - POSTGRES_PASSWORD=spbhack
         - POSTGRES_DB=spbhack
         - PGDATA=/var/lib/postgresql/data/pgdata
       ports:

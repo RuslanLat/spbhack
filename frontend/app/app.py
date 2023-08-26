@@ -1,9 +1,10 @@
 import streamlit as st
+import requests
+import json
 import pandas as pd
-from fuzzywuzzy import fuzz
 
 st.set_page_config(page_title='Комитет по информатизации и связи',
-                    page_icon='images/logo.jpg') #layout = "wide"
+                    page_icon='app/images/logo.jpg') #layout = "wide"
 
 
 col1, col2 = st.columns([1,5])
@@ -13,8 +14,14 @@ col2.markdown("<p style='text-align: center; font-size:20px; color: blac;'> Се
 
 input_text = st.text_input('Введите адрес для поиска', 'г.Санкт-Петербург, Петровский проспект, дом 18')
 
-def fuzz_partial_ratio(full_address_lower, input_text):
-    return fuzz.partial_ratio(full_address_lower, input_text)
+@st.cache_data
+def data_upload_predict(input_text):
+    params = {'addrese' : input_text}
+    res = requests.post(url = 'http://api:8000/predict', params=params)
+    df = pd.DataFrame.from_dict(res.json())
+
+    return df
+
 
 
 if input_text:
@@ -23,7 +30,8 @@ if input_text:
     #building = pd.read_csv('/row_data/building_20230808.csv')
     #building['fuzz_partial_ratio'] = building['full_address'].apply(lambda x: fuzz_partial_ratio(x, #input_text))
     #df = building.sort_values(by='fuzz_partial_ratio', ascending=False)['full_address'][:10]
-    df = fuzz_partial_ratio(input_text, input_text)
+    df = data_upload_predict(input_text)
+    #df = fuzz_partial_ratio(input_text, input_text)
     st.subheader('Результаты поиска')
     st.write(df)
 
