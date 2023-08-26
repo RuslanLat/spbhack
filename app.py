@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 import pandas as pd
+from fuzzywuzzy import fuzz
 
 st.set_page_config(page_title='Комитет по информатизации и связи',
                     page_icon='images/logo.jpg') #layout = "wide"
