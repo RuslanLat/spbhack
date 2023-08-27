@@ -46,7 +46,8 @@ def addrese_predict(addrese: str):
     # connect.commit()
 
     cursor.execute("""SELECT *
-                    FROM train_building;""")
+                    FROM train_building
+                    LIMIT 500;""")
     rows = cursor.fetchall()
 
     df = pd.DataFrame(rows, columns=[_.name for _ in cursor.description])
